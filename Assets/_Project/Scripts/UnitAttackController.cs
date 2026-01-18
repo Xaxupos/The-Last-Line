@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitAttackController : MonoBehaviour
 {
     [SerializeField] private Unit owner;
     [SerializeField] private float minAttackInterval = 0.05f;
+    [SerializeField] private List<OnHitActionDefinition> onHitActions = new();
 
     private float _nextAttackTime;
     private Unit _pendingTarget;
@@ -99,6 +101,7 @@ public class UnitAttackController : MonoBehaviour
 
         _pendingTarget.health?.TakeDamage(_pendingDamage);
         OnHit?.Invoke(owner, _pendingTarget, _pendingDamage);
+        ApplyOnHitActions(owner, _pendingTarget, _pendingDamage);
         ClearPendingHit();
     }
 
@@ -112,5 +115,20 @@ public class UnitAttackController : MonoBehaviour
     private void OnDisable()
     {
         ClearPendingHit();
+    }
+
+    private void ApplyOnHitActions(Unit attacker, Unit target, float baseDamage)
+    {
+        if (onHitActions == null || onHitActions.Count == 0)
+            return;
+
+        for (int i = 0; i < onHitActions.Count; i++)
+        {
+            var action = onHitActions[i];
+            if (action == null)
+                continue;
+
+            action.Apply(attacker, target, baseDamage);
+        }
     }
 }

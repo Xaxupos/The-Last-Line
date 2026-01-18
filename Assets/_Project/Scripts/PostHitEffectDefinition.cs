@@ -1,0 +1,1 @@
+// Deprecated: renamed to OnHitActionDefinition.
