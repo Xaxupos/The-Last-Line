@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1973749623044599996
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 130898205875498259, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_Name
+      value: Upgrades Tree Content Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365573736160174164, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 414438728568513432, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 11400000, guid: 180beb030b00c8848b5b41c2f892c54f, type: 2}
+    - target: {fileID: 484587098648135478, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 484587098648135478, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 484587098648135478, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 484587098648135478, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryPurchase
+      objectReference: {fileID: 0}
+    - target: {fileID: 484587098648135478, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UpgradeButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 484587098648135478, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114429319566657700, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 11400000, guid: 180beb030b00c8848b5b41c2f892c54f, type: 2}
+    - target: {fileID: 3114429319566657700, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: connected.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114429319566657700, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: 'connected.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5112481947846119325}
+    - target: {fileID: 5822037646308078430, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866726739161903300, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743865485442776865, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 11400000, guid: dad0a5664497db347862eef16db0bed3, type: 2}
+    - target: {fileID: 6743865485442776865, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: startRevealed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158320591696318496, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bc1be5ec59e677f4584d6f658e143382, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 7857031385920291726, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+--- !u!114 &5112481947846119325 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6743865485442776865, guid: 776e740efa712834e868502ca9baef6d, type: 3}
+  m_PrefabInstance: {fileID: 1973749623044599996}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6296cd310312db49970605206f6c4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButton

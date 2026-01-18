@@ -1,8 +1,14 @@
 using UnityEngine;
 
-public abstract class UIPanel : MonoBehaviour
+[RequireComponent(typeof(UIFader))]
+public class UIPanel : MonoBehaviour
 {
     public UIFader uiFader;
+
+    void Awake()
+    {
+        uiFader = GetComponent<UIFader>();
+    }
 
     public virtual void ShowPanel()
     {

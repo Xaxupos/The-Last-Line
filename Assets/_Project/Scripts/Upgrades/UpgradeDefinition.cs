@@ -9,5 +9,6 @@ public class UpgradeDefinition : ScriptableObject
     [TextArea] public string description;
     public Sprite icon;
     public int maxStacks = 1;
+    public CurrencyAmount[] costs;
     public List<UpgradeEffectDefinition> effects = new();
 }

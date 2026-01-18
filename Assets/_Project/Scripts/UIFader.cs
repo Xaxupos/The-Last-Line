@@ -9,6 +9,7 @@ public class UIFader : MonoBehaviour
     [SerializeField] private bool useUnscaledTime = true;
     [SerializeField] private bool enableInteractionWhenVisible = true;
     [SerializeField] private bool blockRaycastsWhenVisible = true;
+    [SerializeField] private bool toggleActiveOnFade = true;
 
     [Header("Events")]
     [SerializeField] private UnityEvent OnFadeInStart;
@@ -48,6 +49,7 @@ public class UIFader : MonoBehaviour
 
         canvasGroup.alpha = Mathf.Clamp01(alpha);
         UpdateInteraction(canvasGroup.alpha >= 0.999f);
+        UpdateActiveState(canvasGroup.alpha > 0f);
     }
 
     private void StartFade(float targetAlpha, float duration, UnityEvent onStart, UnityEvent onEnd)
@@ -55,12 +57,17 @@ public class UIFader : MonoBehaviour
         if (canvasGroup == null)
             return;
 
+        if (toggleActiveOnFade && targetAlpha > 0f && !gameObject.activeSelf)
+            gameObject.SetActive(true);
+
         if (duration <= 0f)
         {
             canvasGroup.alpha = targetAlpha;
             UpdateInteraction(targetAlpha >= 0.999f);
             onStart?.Invoke();
             onEnd?.Invoke();
+            if (targetAlpha <= 0f)
+                UpdateActiveState(false);
             return;
         }
 
@@ -73,6 +80,8 @@ public class UIFader : MonoBehaviour
             {
                 UpdateInteraction(targetAlpha >= 0.999f);
                 onEnd?.Invoke();
+                if (targetAlpha <= 0f)
+                    UpdateActiveState(false);
                 _fadeTween = null;
             });
     }
@@ -84,5 +93,20 @@ public class UIFader : MonoBehaviour
 
         canvasGroup.interactable = visible && enableInteractionWhenVisible;
         canvasGroup.blocksRaycasts = visible && blockRaycastsWhenVisible;
+    }
+
+    private void UpdateActiveState(bool visible)
+    {
+        if (!toggleActiveOnFade)
+            return;
+
+        if (visible && !gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+        else if (!visible && gameObject.activeSelf)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

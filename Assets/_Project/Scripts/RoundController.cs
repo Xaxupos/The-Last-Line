@@ -9,11 +9,15 @@ public class RoundController : MonoBehaviour
     [Header("Events")]
     [SerializeField] private UnityEvent OnRoundStarted;
     [SerializeField] private UnityEvent OnRoundEnded;
-    [SerializeField] private UnityEvent OnRoundWon;
-    [SerializeField] private UnityEvent OnRoundLost;
 
     private bool _running;
     private float _startTime;
+
+    private void Start()
+    {
+        if (RunStateManager.HasInstance && RunStateManager.Instance.TryConsumePendingRound(out var round))
+            StartRound(round);
+    }
 
     private void OnEnable()
     {
@@ -63,7 +67,7 @@ public class RoundController : MonoBehaviour
 
         runtimeState.Tick(Time.deltaTime);
         if (runtimeState.IsTimeUp())
-            EndRound(true);
+            EndRound();
     }
 
     private void OnUnitDied(Unit _)
@@ -72,11 +76,11 @@ public class RoundController : MonoBehaviour
 
         if (UnitsManager.Instance.AlivePlayers <= 0)
         {
-            EndRound(false);
+            EndRound();
         }
     }
 
-    private void EndRound(bool won)
+    private void EndRound()
     {
         if (!_running)
             return;
@@ -89,16 +93,7 @@ public class RoundController : MonoBehaviour
         if (runtimeState != null)
             runtimeState.Stop();
 
-        if (won)
-        {
-            Debug.Log($"WIN in {Time.time - _startTime:0.00}s");
-            OnRoundWon?.Invoke();
-        }
-        else
-        {
-            Debug.Log("LOSE");
-            OnRoundLost?.Invoke();
-        }
+        Debug.Log($"ROUND ENDED in {Time.time - _startTime:0.00}s");
 
         OnRoundEnded?.Invoke();
     }

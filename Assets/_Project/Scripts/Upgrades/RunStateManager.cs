@@ -13,10 +13,12 @@ public class RunStateManager : MonoBehaviourSingleton<RunStateManager>
     }
 
     [SerializeField] private List<UpgradeStack> upgrades = new();
+    [SerializeField] private RoundDefinition pendingRound;
 
     private UnitsManager _unitsManager;
 
     public IReadOnlyList<UpgradeStack> Upgrades => upgrades;
+    public RoundDefinition PendingRound => pendingRound;
 
     protected override void Awake()
     {
@@ -137,6 +139,24 @@ public class RunStateManager : MonoBehaviourSingleton<RunStateManager>
             RemoveUpgradeFromAllUnits(upgrades[i].definition);
 
         upgrades.Clear();
+    }
+
+    public void SetPendingRound(RoundDefinition round)
+    {
+        pendingRound = round;
+    }
+
+    public bool TryConsumePendingRound(out RoundDefinition round)
+    {
+        if (pendingRound == null)
+        {
+            round = null;
+            return false;
+        }
+
+        round = pendingRound;
+        pendingRound = null;
+        return true;
     }
 
     public void ApplyToUnit(Unit unit)

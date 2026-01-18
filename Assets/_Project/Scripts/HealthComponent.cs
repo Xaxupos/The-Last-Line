@@ -7,7 +7,7 @@ public class HealthComponent : MonoBehaviour
     public event Action OnDied;
 
     private StatsComponent _stats;
-    private float _currentHp;
+    [SerializeField] private float _currentHp;
 
     private void Awake()
     {

@@ -28,3 +28,11 @@ MonoBehaviour:
     value: 15
   - id: 5
     value: 20
+  lootTable:
+    serializedKvps:
+    - Key: 0
+      Value: {x: 10, y: 20}
+      index: 0
+      isKeyRepeated: 0
+      isKeyNull: 0
+    dividerPos: 0.33

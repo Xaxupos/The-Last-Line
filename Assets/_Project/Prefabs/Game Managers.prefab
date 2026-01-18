@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoundController
   enemySpawner: {fileID: 4483405806595930768}
+  runtimeState: {fileID: 6885311250433165323}
   OnRoundStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -189,9 +190,60 @@ Transform:
   m_Children:
   - {fileID: 6068296985931427107}
   - {fileID: 2917279211753180389}
+  - {fileID: 7391842566016212037}
   - {fileID: 6119019210023987409}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5467224929503504584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7391842566016212037}
+  - component: {fileID: 6885311250433165323}
+  m_Layer: 0
+  m_Name: Round Runtime State
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7391842566016212037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467224929503504584}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9161825574973852661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6885311250433165323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467224929503504584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9327a0a182c72644af6a0ee50e4a0ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoundRuntimeState
+  baseDefinition: {fileID: 0}
+  spawnRate: 0
+  timeLimitSeconds: 0
+  timeLeft: 0
+  elapsedSeconds: 0
+  running: 0
 --- !u!1 &7371679787012775434
 GameObject:
   m_ObjectHideFlags: 0

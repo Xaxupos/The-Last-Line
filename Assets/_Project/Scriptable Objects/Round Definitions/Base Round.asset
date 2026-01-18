@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5341d3e49dc37d24d8d5fe98cc96cfe7, type: 3}
-  m_Name: Round 1
+  m_Name: Base Round
   m_EditorClassIdentifier: Assembly-CSharp::RoundDefinition
-  roundIndex: 1
   timeLimitSeconds: 30
-  enemies:
+  baseSpawnRate: 0.1
+  enemyPool:
   - enemyPrefab: {fileID: 1018698247976440567, guid: 518189dcd5e15d54390bb0180e380edf, type: 3}
-    count: 1
-    interval: 1
+    weight: 1

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fb5c3373e22ff45b41e6c760f08cde, type: 3}
+  m_Name: Spearman Damage Upgrade Definition
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeDefinition
+  id: 1
+  displayName: Sharp Spear
+  description: Increase damage by 5%
+  icon: {fileID: 21300000, guid: 055a6bd799c2a5946823a840ad22c154, type: 3}
+  maxStacks: 5
+  costs:
+  - type: 0
+    amount: 10
+  effects:
+  - {fileID: 11400000, guid: 9982b5d9c92b1134c8ec6e50351f860d, type: 2}

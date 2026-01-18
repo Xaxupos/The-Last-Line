@@ -5,9 +5,6 @@ public class StatusEffectDefinition : ScriptableObject
 {
     [Header("Identity")]
     public string effectId;
-    public string displayName;
-    [TextArea] public string description;
-    public Sprite icon;
     public bool isDebuff;
 
     [Header("Timing")]

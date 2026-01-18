@@ -250,6 +250,9 @@ public class StatusEffectController : MonoBehaviour
         if (value <= 0f)
             return;
 
+        if (string.Equals(instance.Definition.GetKey(), "BLEED", StringComparison.OrdinalIgnoreCase))
+            Debug.Log($"BLEED TICK on {owner.name}: {value:0.##}", owner);
+
         if (instance.Definition.tickIsHeal)
             owner.health.Heal(value);
         else
