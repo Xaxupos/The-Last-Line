@@ -63,7 +63,7 @@ public class UnitAttackController : MonoBehaviour
 
         owner.animator?.PlayAttack();
         OnAttack?.Invoke(owner, target);
-        QueuePendingHit(target, Mathf.Max(0f, stats.GetFinal(StatId.Damage)));
+        QueuePendingHit(target, GetRandomDamage(stats));
     }
 
     private bool IsTargetValid(Unit target)
@@ -82,6 +82,39 @@ public class UnitAttackController : MonoBehaviour
         _pendingTarget = target;
         _pendingDamage = damage;
         _hasPendingHit = damage > 0f;
+    }
+
+    private static float GetRandomDamage(StatsComponent stats)
+    {
+        float minValue = stats.GetFinal(StatId.DamageMin);
+        float maxValue = stats.GetFinal(StatId.DamageMax);
+
+        if (minValue > 0f || maxValue > 0f)
+        {
+            if (maxValue < minValue)
+            {
+                float tmp = minValue;
+                minValue = maxValue;
+                maxValue = tmp;
+            }
+
+            int min = Mathf.RoundToInt(minValue);
+            int max = Mathf.RoundToInt(maxValue);
+            if (max < min)
+            {
+                int tmp = min;
+                min = max;
+                max = tmp;
+            }
+
+            if (min == max)
+                return Mathf.Max(0f, min);
+
+            int roll = UnityEngine.Random.Range(min, max + 1);
+            return Mathf.Max(0f, roll);
+        }
+
+        return 0f;
     }
 
     //Need to call via animation event

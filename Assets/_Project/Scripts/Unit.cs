@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(HealthComponent))]
 public class Unit : MonoBehaviour
 {
     public Team team;

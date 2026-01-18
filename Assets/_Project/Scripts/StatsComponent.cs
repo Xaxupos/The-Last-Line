@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class StatsComponent : MonoBehaviour
 {
+    [Serializable]
+    private struct StatDebugEntry
+    {
+        public StatId id;
+        public float baseValue;
+        public float finalValue;
+    }
+
     private sealed class StatModifierInstance
     {
         public readonly int Id;
@@ -26,6 +34,8 @@ public class StatsComponent : MonoBehaviour
     private readonly Dictionary<StatId, List<StatModifierInstance>> _modifiers = new();
     private int _nextModifierId = 1;
     private bool _hasTimedModifiers;
+    [SerializeField] private List<StatDebugEntry> debugStats = new();
+    private bool _debugDirty = true;
 
     public event Action<StatId> OnStatChanged;
 
@@ -37,6 +47,7 @@ public class StatsComponent : MonoBehaviour
     public void SetBase(StatId id, float value)
     {
         _baseStats[id] = value;
+        MarkDebugDirty();
         OnStatChanged?.Invoke(id);
     }
 
@@ -58,6 +69,8 @@ public class StatsComponent : MonoBehaviour
             _baseStats[entry.id] = entry.value;
             OnStatChanged?.Invoke(entry.id);
         }
+
+        MarkDebugDirty();
     }
 
     public StatModifierHandle AddModifier(StatId id, StatModifier mod, float durationSeconds = -1f, object source = null)
@@ -75,6 +88,7 @@ public class StatsComponent : MonoBehaviour
         if (instance.IsTimed)
             _hasTimedModifiers = true;
 
+        MarkDebugDirty();
         OnStatChanged?.Invoke(id);
         return new StatModifierHandle(id, instance.Id);
     }
@@ -90,6 +104,7 @@ public class StatsComponent : MonoBehaviour
                 continue;
 
             list.RemoveAt(i);
+            MarkDebugDirty();
             OnStatChanged?.Invoke(handle.StatId);
             return true;
         }
@@ -119,7 +134,10 @@ public class StatsComponent : MonoBehaviour
             }
 
             if (changed)
+            {
+                MarkDebugDirty();
                 OnStatChanged?.Invoke(kvp.Key);
+            }
         }
 
         return removed;
@@ -133,6 +151,7 @@ public class StatsComponent : MonoBehaviour
 
         _modifiers.Clear();
         _hasTimedModifiers = false;
+        MarkDebugDirty();
     }
 
     public float GetFinal(StatId id)
@@ -168,7 +187,10 @@ public class StatsComponent : MonoBehaviour
     private void Update()
     {
         if (!_hasTimedModifiers)
+        {
+            UpdateDebugListIfNeeded();
             return;
+        }
 
         float now = Time.time;
         bool anyTimed = false;
@@ -193,9 +215,48 @@ public class StatsComponent : MonoBehaviour
             }
 
             if (changed)
+            {
+                MarkDebugDirty();
                 OnStatChanged?.Invoke(kvp.Key);
+            }
         }
 
         _hasTimedModifiers = anyTimed;
+        UpdateDebugListIfNeeded();
+    }
+
+    private void MarkDebugDirty()
+    {
+        _debugDirty = true;
+    }
+
+    private void UpdateDebugListIfNeeded()
+    {
+        if (!_debugDirty)
+            return;
+
+        _debugDirty = false;
+        if (debugStats == null)
+            debugStats = new List<StatDebugEntry>();
+
+        debugStats.Clear();
+
+        var ids = new HashSet<StatId>();
+        foreach (var kvp in _baseStats)
+            ids.Add(kvp.Key);
+        foreach (var kvp in _modifiers)
+            ids.Add(kvp.Key);
+
+        foreach (var id in ids)
+        {
+            debugStats.Add(new StatDebugEntry
+            {
+                id = id,
+                baseValue = GetBase(id),
+                finalValue = GetFinal(id)
+            });
+        }
+
+        debugStats.Sort((a, b) => a.id.CompareTo(b.id));
     }
 }

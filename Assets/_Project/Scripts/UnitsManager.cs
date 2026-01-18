@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class UnitsManager : MonoBehaviourSingleton<UnitsManager>
 {
-    private readonly List<Unit> _players = new();
-    private readonly List<Unit> _enemies = new();
+    public List<Unit> _players = new();
+    public List<Unit> _enemies = new();
 
     public event Action<Unit> OnUnitDied;
 

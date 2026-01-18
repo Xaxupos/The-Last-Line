@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(StatsComponent))]
 public class HealthComponent : MonoBehaviour
 {
     public Unit owner;
