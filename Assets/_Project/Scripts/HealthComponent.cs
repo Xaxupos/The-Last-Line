@@ -53,6 +53,14 @@ public class HealthComponent : MonoBehaviour
             OnDied?.Invoke();
     }
 
+    public void Heal(float amount)
+    {
+        if (_currentHp <= 0f)
+            return;
+
+        _currentHp = Mathf.Min(_currentHp + Mathf.Max(0f, amount), Max);
+    }
+
     public float Current => _currentHp;
     public float Max => _stats != null ? _stats.GetFinal(StatId.MaxHp) : 0f;
 

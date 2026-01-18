@@ -10,6 +10,8 @@ public class Unit : MonoBehaviour
     public UnitAnimator animator;
     public UnitBrain brain;
     public UnitAttackController attackController;
+    public StatusEffectController statusEffects;
+    public UnitOnHitEffectController onHitEffects;
     [SerializeField] private float deathAnimationDuration = 1f;
 
     public bool IsDead { get; private set; }
@@ -62,6 +64,13 @@ public class Unit : MonoBehaviour
             brain.enabled = false;
         if (attackController != null)
             attackController.enabled = false;
+        if (onHitEffects != null)
+            onHitEffects.enabled = false;
+        if (statusEffects != null)
+        {
+            statusEffects.ClearAll();
+            statusEffects.enabled = false;
+        }
         if (animator != null)
             animator.PlayDeath();
 
