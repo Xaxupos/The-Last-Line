@@ -7,6 +7,12 @@ public class Unit : MonoBehaviour
     public HealthComponent health;
     public StatsComponent statsComponent;
     public UnitDefinition definition;
+    public UnitAnimator animator;
+    public UnitBrain brain;
+    public UnitAttackController attackController;
+    [SerializeField] private float deathAnimationDuration = 1f;
+
+    public bool IsDead { get; private set; }
 
     private void Awake()
     {
@@ -48,7 +54,17 @@ public class Unit : MonoBehaviour
 
     private void HandleDeath()
     {
+        if (IsDead)
+            return;
+
+        IsDead = true;
+        if (brain != null)
+            brain.enabled = false;
+        if (attackController != null)
+            attackController.enabled = false;
+        if (animator != null)
+            animator.PlayDeath();
+
         UnitsManager.Instance.NotifyUnitDied(this);
-        Destroy(gameObject);
     }
 }

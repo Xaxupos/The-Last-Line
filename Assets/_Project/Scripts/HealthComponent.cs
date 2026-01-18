@@ -14,7 +14,7 @@ public class HealthComponent : MonoBehaviour
     {
         _stats = owner.statsComponent;
 
-        if (owner == null || _stats == null)
+        if (_stats == null)
         {
             Debug.LogError("HealthComponent missing required references.", this);
             enabled = false;
@@ -45,6 +45,9 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        if (_currentHp <= 0f)
+            return;
+
         _currentHp -= Mathf.Max(0f, dmg);
         if (_currentHp <= 0f)
             OnDied?.Invoke();
