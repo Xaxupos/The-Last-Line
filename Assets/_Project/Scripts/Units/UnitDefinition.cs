@@ -1,4 +1,5 @@
 using UnityEngine;
+using VInspector;
 
 [CreateAssetMenu(menuName = "Game/Units/Unit Definition")]
 public class UnitDefinition : ScriptableObject
@@ -7,4 +8,7 @@ public class UnitDefinition : ScriptableObject
     [TextArea] public string description;
     public Sprite icon;
     public StatBaseEntry[] baseStats;
+
+    [Header("Loot")]
+    public SerializedDictionary<CurrencyType, Vector2Int> lootTable = new();
 }

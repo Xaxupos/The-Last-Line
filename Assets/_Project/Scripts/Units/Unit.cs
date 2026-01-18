@@ -76,6 +76,35 @@ public class Unit : MonoBehaviour
         if (animator != null)
             animator.PlayDeath();
 
+        TryDropLoot();
         UnitsManager.Instance.NotifyUnitDied(this);
+    }
+
+    private void TryDropLoot()
+    {
+        if (team != Team.Enemy || definition == null)
+            return;
+
+        if (definition.lootTable == null || definition.lootTable.Count == 0)
+            return;
+
+        if (!CurrencyManager.HasInstance)
+            return;
+
+        foreach (var entry in definition.lootTable)
+        {
+            var range = entry.Value;
+            int amount = Random.Range(range.x, range.y + 1);
+            if (amount <= 0)
+                continue;
+
+            if (RunStateManager.HasInstance)
+                amount = RunStateManager.Instance.ModifyLootAmount(entry.Key, amount);
+
+            if (amount <= 0)
+                continue;
+
+            CurrencyManager.Instance.Add(entry.Key, amount);
+        }
     }
 }

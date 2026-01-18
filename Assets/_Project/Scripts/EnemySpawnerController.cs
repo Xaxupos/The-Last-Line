@@ -9,11 +9,11 @@ public class EnemySpawnerController : MonoBehaviour
     private Coroutine _spawnRoutine;
     private bool _running;
 
-    public void StartSpawning(RoundDefinition round)
+    public void StartSpawning(RoundRuntimeState runtime)
     {
-        if (round == null)
+        if (runtime == null || runtime.BaseDefinition == null)
         {
-            Debug.LogError("EnemySpawnerController.StartSpawning called with null round.", this);
+            Debug.LogError("EnemySpawnerController.StartSpawning called with null runtime.", this);
             return;
         }
 
@@ -25,7 +25,7 @@ public class EnemySpawnerController : MonoBehaviour
 
         StopSpawning();
         _running = true;
-        _spawnRoutine = StartCoroutine(Spawn(round));
+        _spawnRoutine = StartCoroutine(Spawn(runtime));
     }
 
     public void StopSpawning()
@@ -43,24 +43,30 @@ public class EnemySpawnerController : MonoBehaviour
         StopSpawning();
     }
 
-    private IEnumerator Spawn(RoundDefinition round)
+    private IEnumerator Spawn(RoundRuntimeState runtime)
     {
-        foreach (var e in round.enemies)
+        var definition = runtime.BaseDefinition;
+        if (definition.enemyPool == null || definition.enemyPool.Length == 0)
         {
-            for (int i = 0; i < e.count; i++)
+            Debug.LogWarning("EnemySpawnerController has an empty enemy pool.", this);
+            yield break;
+        }
+
+        while (_running)
+        {
+            float rate = runtime.SpawnRate;
+            if (rate <= 0f)
             {
-                if (!_running)
-                    yield break;
-
-                if (e.enemyPrefab == null)
-                {
-                    Debug.LogWarning("EnemySpawnerController has a null enemy prefab entry.", this);
-                    continue;
-                }
-
-                SpawnEnemy(e.enemyPrefab);
-                yield return new WaitForSeconds(e.interval);
+                yield return null;
+                continue;
             }
+
+            var enemyPrefab = PickEnemy(definition.enemyPool);
+            if (enemyPrefab != null)
+                SpawnEnemy(enemyPrefab);
+
+            float interval = 1f / rate;
+            yield return new WaitForSeconds(interval);
         }
     }
 
@@ -71,6 +77,35 @@ public class EnemySpawnerController : MonoBehaviour
 
         var spawnedUnit = Instantiate(def, position, Quaternion.identity);
         spawnedUnit.SetTeam(Team.Enemy);
+    }
+
+    private Unit PickEnemy(EnemySpawnOption[] pool)
+    {
+        float totalWeight = 0f;
+        for (int i = 0; i < pool.Length; i++)
+        {
+            var entry = pool[i];
+            if (entry.enemyPrefab == null || entry.weight <= 0f)
+                continue;
+            totalWeight += entry.weight;
+        }
+
+        if (totalWeight <= 0f)
+            return null;
+
+        float roll = Random.value * totalWeight;
+        float acc = 0f;
+        for (int i = 0; i < pool.Length; i++)
+        {
+            var entry = pool[i];
+            if (entry.enemyPrefab == null || entry.weight <= 0f)
+                continue;
+            acc += entry.weight;
+            if (roll <= acc)
+                return entry.enemyPrefab;
+        }
+
+        return null;
     }
 
     private bool HasValidSpawnAreas()

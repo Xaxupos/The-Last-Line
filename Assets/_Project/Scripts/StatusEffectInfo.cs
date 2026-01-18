@@ -1,3 +1,4 @@
+[System.Serializable]
 public readonly struct StatusEffectInfo
 {
     public readonly StatusEffectDefinition Definition;

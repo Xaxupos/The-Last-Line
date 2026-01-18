@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 public class StatsComponent : MonoBehaviour
 {
@@ -30,23 +31,24 @@ public class StatsComponent : MonoBehaviour
         }
     }
 
-    private readonly Dictionary<StatId, float> _baseStats = new();
+    public SerializedDictionary<StatId, float> BaseStats = new();
     private readonly Dictionary<StatId, List<StatModifierInstance>> _modifiers = new();
     private int _nextModifierId = 1;
     private bool _hasTimedModifiers;
     [SerializeField] private List<StatDebugEntry> debugStats = new();
+    public SerializedDictionary<StatId, int> ModifierCounts = new();
     private bool _debugDirty = true;
 
     public event Action<StatId> OnStatChanged;
 
     public float GetBase(StatId id)
     {
-        return _baseStats.TryGetValue(id, out var baseValue) ? baseValue : 0f;
+        return BaseStats != null && BaseStats.TryGetValue(id, out var baseValue) ? baseValue : 0f;
     }
 
     public void SetBase(StatId id, float value)
     {
-        _baseStats[id] = value;
+        BaseStats[id] = value;
         MarkDebugDirty();
         OnStatChanged?.Invoke(id);
     }
@@ -62,11 +64,11 @@ public class StatsComponent : MonoBehaviour
             return;
 
         if (clearExisting)
-            _baseStats.Clear();
+            BaseStats.Clear();
 
         foreach (var entry in entries)
         {
-            _baseStats[entry.id] = entry.value;
+            BaseStats[entry.id] = entry.value;
             OnStatChanged?.Invoke(entry.id);
         }
 
@@ -156,7 +158,7 @@ public class StatsComponent : MonoBehaviour
 
     public float GetFinal(StatId id)
     {
-        if (!_baseStats.TryGetValue(id, out var baseValue))
+        if (BaseStats == null || !BaseStats.TryGetValue(id, out var baseValue))
             return 0f;
 
         float flat = 0f;
@@ -242,7 +244,7 @@ public class StatsComponent : MonoBehaviour
         debugStats.Clear();
 
         var ids = new HashSet<StatId>();
-        foreach (var kvp in _baseStats)
+        foreach (var kvp in BaseStats)
             ids.Add(kvp.Key);
         foreach (var kvp in _modifiers)
             ids.Add(kvp.Key);
@@ -255,6 +257,9 @@ public class StatsComponent : MonoBehaviour
                 baseValue = GetBase(id),
                 finalValue = GetFinal(id)
             });
+
+            int count = _modifiers.TryGetValue(id, out var list) ? list.Count : 0;
+            ModifierCounts[id] = count;
         }
 
         debugStats.Sort((a, b) => a.id.CompareTo(b.id));

@@ -5,6 +5,7 @@ using VInspector;
 public class RoundController : MonoBehaviour
 {
     [SerializeField] private EnemySpawnerController enemySpawner;
+    [SerializeField] private RoundRuntimeState runtimeState;
     [Header("Events")]
     [SerializeField] private UnityEvent OnRoundStarted;
     [SerializeField] private UnityEvent OnRoundEnded;
@@ -13,7 +14,6 @@ public class RoundController : MonoBehaviour
 
     private bool _running;
     private float _startTime;
-    private RoundDefinition _currentRound;
 
     private void OnEnable()
     {
@@ -41,34 +41,36 @@ public class RoundController : MonoBehaviour
             return;
         }
 
-        _currentRound = round;
+        if (runtimeState == null)
+        {
+            Debug.LogError("RoundController missing RoundRuntimeState reference.", this);
+            return;
+        }
+
+        runtimeState.Initialize(round);
+        if (RunStateManager.HasInstance)
+            RunStateManager.Instance.ApplyToRound(runtimeState);
         _running = true;
         _startTime = Time.time;
-        enemySpawner.StartSpawning(round);
+        enemySpawner.StartSpawning(runtimeState);
         OnRoundStarted?.Invoke();
     }
 
     private void Update()
     {
-        if (!_running || _currentRound == null)
+        if (!_running || runtimeState == null || !runtimeState.IsRunning)
             return;
 
-        if (_currentRound.timeLimitSeconds <= 0f)
-            return;
-
-        if (Time.time - _startTime >= _currentRound.timeLimitSeconds)
-            EndRound(false);
+        runtimeState.Tick(Time.deltaTime);
+        if (runtimeState.IsTimeUp())
+            EndRound(true);
     }
 
     private void OnUnitDied(Unit _)
     {
         if (!_running) return;
 
-        if (UnitsManager.Instance.AliveEnemies <= 0)
-        {
-            EndRound(true);
-        }
-        else if (UnitsManager.Instance.AlivePlayers <= 0)
+        if (UnitsManager.Instance.AlivePlayers <= 0)
         {
             EndRound(false);
         }
@@ -84,6 +86,9 @@ public class RoundController : MonoBehaviour
         if (enemySpawner != null)
             enemySpawner.StopSpawning();
 
+        if (runtimeState != null)
+            runtimeState.Stop();
+
         if (won)
         {
             Debug.Log($"WIN in {Time.time - _startTime:0.00}s");
@@ -96,6 +101,5 @@ public class RoundController : MonoBehaviour
         }
 
         OnRoundEnded?.Invoke();
-        _currentRound = null;
     }
 }

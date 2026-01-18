@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 public class StatusEffectUI : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class StatusEffectUI : MonoBehaviour
     [SerializeField] private RectTransform container;
     [SerializeField] private StatusEffectIcon iconPrefab;
 
-    private readonly Dictionary<StatusEffectDefinition, StatusEffectIcon> _icons = new();
+    public SerializedDictionary<StatusEffectDefinition, StatusEffectIcon> Icons = new();
     private readonly List<StatusEffectInfo> _buffer = new();
 
     private void OnEnable()
@@ -37,7 +38,7 @@ public class StatusEffectUI : MonoBehaviour
         for (int i = 0; i < _buffer.Count; i++)
         {
             var info = _buffer[i];
-            if (!_icons.TryGetValue(info.Definition, out var icon))
+            if (!Icons.TryGetValue(info.Definition, out var icon))
             {
                 icon = CreateIcon(info.Definition);
                 if (icon == null)
@@ -54,7 +55,7 @@ public class StatusEffectUI : MonoBehaviour
         if (iconPrefab == null || container == null)
             return;
 
-        if (_icons.ContainsKey(info.Definition))
+        if (Icons.ContainsKey(info.Definition))
             return;
 
         CreateIcon(info.Definition);
@@ -62,10 +63,10 @@ public class StatusEffectUI : MonoBehaviour
 
     private void HandleEffectRemoved(StatusEffectInfo info)
     {
-        if (!_icons.TryGetValue(info.Definition, out var icon))
+        if (!Icons.TryGetValue(info.Definition, out var icon))
             return;
 
-        _icons.Remove(info.Definition);
+        Icons.Remove(info.Definition);
         if (icon != null)
             Destroy(icon.gameObject);
     }
@@ -74,7 +75,7 @@ public class StatusEffectUI : MonoBehaviour
     {
         var icon = Instantiate(iconPrefab, container);
         icon.Bind(definition);
-        _icons[definition] = icon;
+        Icons[definition] = icon;
         return icon;
     }
 }

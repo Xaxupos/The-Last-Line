@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 public class StatusEffectController : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class StatusEffectController : MonoBehaviour
     private readonly List<StatusEffectInstance> _instances = new();
     private readonly Dictionary<int, StatusEffectInstance> _instancesById = new();
     private readonly Dictionary<string, StatusEffectInstance> _instancesByKey = new();
+    public SerializedDictionary<int, StatusEffectInfo> DebugById = new();
+    public SerializedDictionary<string, StatusEffectInfo> DebugByKey = new();
     private int _nextId = 1;
 
     public event Action<StatusEffectInfo> OnEffectAdded;
@@ -87,6 +90,7 @@ public class StatusEffectController : MonoBehaviour
         _instancesByKey[key] = instance;
 
         OnEffectAdded?.Invoke(instance.ToInfo());
+        SyncDebug();
         return new StatusEffectHandle(instance.Id);
     }
 
@@ -196,6 +200,8 @@ public class StatusEffectController : MonoBehaviour
                 instance.NextTickTime = now + def.tickIntervalSeconds;
             }
         }
+
+        SyncDebug();
     }
 
     private void ApplyModifiers(StatusEffectInstance instance)
@@ -231,6 +237,7 @@ public class StatusEffectController : MonoBehaviour
         _instances.Remove(instance);
         _instancesById.Remove(instance.Id);
         _instancesByKey.Remove(instance.Key);
+        SyncDebug();
         OnEffectRemoved?.Invoke(instance.ToInfo());
     }
 
@@ -265,5 +272,23 @@ public class StatusEffectController : MonoBehaviour
     private static bool ShouldTick(StatusEffectDefinition def)
     {
         return def.tickIntervalSeconds > 0f && def.tickValue > 0f;
+    }
+
+    private void SyncDebug()
+    {
+        if (DebugById == null)
+            DebugById = new SerializedDictionary<int, StatusEffectInfo>();
+        if (DebugByKey == null)
+            DebugByKey = new SerializedDictionary<string, StatusEffectInfo>();
+
+        DebugById.Clear();
+        DebugByKey.Clear();
+
+        for (int i = 0; i < _instances.Count; i++)
+        {
+            var info = _instances[i].ToInfo();
+            DebugById[_instances[i].Id] = info;
+            DebugByKey[_instances[i].Key] = info;
+        }
     }
 }

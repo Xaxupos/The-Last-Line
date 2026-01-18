@@ -4,8 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/Rounds/Round Definition")]
 public class RoundDefinition : ScriptableObject
 {
-    public int roundIndex;
-    public float timeLimitSeconds;
-
-    public EnemySpawnEntry[] enemies;
+    public float timeLimitSeconds = 30f;
+    public float baseSpawnRate = 1f;
+    public EnemySpawnOption[] enemyPool;
 }

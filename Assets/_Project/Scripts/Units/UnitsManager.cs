@@ -6,6 +6,7 @@ public class UnitsManager : MonoBehaviourSingleton<UnitsManager>
     public List<Unit> _players = new();
     public List<Unit> _enemies = new();
 
+    public event Action<Unit> OnUnitRegistered;
     public event Action<Unit> OnUnitDied;
 
     public IReadOnlyList<Unit> Players => _players;
@@ -18,7 +19,10 @@ public class UnitsManager : MonoBehaviourSingleton<UnitsManager>
     {
         var list = unit.team == Team.Player ? _players : _enemies;
         if (!list.Contains(unit))
+        {
             list.Add(unit);
+            OnUnitRegistered?.Invoke(unit);
+        }
     }
 
     public void Unregister(Unit unit)

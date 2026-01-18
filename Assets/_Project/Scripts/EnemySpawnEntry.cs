@@ -1,9 +1,1 @@
-using System;
-
-[Serializable]
-public struct EnemySpawnEntry
-{
-    public Unit enemyPrefab;
-    public int count;
-    public float interval;
-}
+// Deprecated: replaced by EnemySpawnOption for weighted endless spawning.

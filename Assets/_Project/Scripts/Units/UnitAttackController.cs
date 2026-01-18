@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class UnitAttackController : MonoBehaviour
 {
+    private struct RuntimeOnHitAction
+    {
+        public OnHitActionDefinition Action;
+        public object Source;
+    }
+
     [SerializeField] private Unit owner;
     [SerializeField] private float minAttackInterval = 0.05f;
     [SerializeField] private List<OnHitActionDefinition> onHitActions = new();
+    private readonly List<RuntimeOnHitAction> _runtimeOnHitActions = new();
 
     private float _nextAttackTime;
     private Unit _pendingTarget;
@@ -162,6 +169,38 @@ public class UnitAttackController : MonoBehaviour
                 continue;
 
             action.Apply(attacker, target, baseDamage);
+        }
+
+        for (int i = 0; i < _runtimeOnHitActions.Count; i++)
+        {
+            var action = _runtimeOnHitActions[i].Action;
+            if (action == null)
+                continue;
+
+            action.Apply(attacker, target, baseDamage);
+        }
+    }
+
+    public void AddRuntimeOnHitAction(OnHitActionDefinition action, object source)
+    {
+        if (action == null)
+            return;
+
+        _runtimeOnHitActions.Add(new RuntimeOnHitAction
+        {
+            Action = action,
+            Source = source
+        });
+    }
+
+    public void RemoveRuntimeOnHitActionsFromSource(object source)
+    {
+        for (int i = _runtimeOnHitActions.Count - 1; i >= 0; i--)
+        {
+            if (!ReferenceEquals(_runtimeOnHitActions[i].Source, source))
+                continue;
+
+            _runtimeOnHitActions.RemoveAt(i);
         }
     }
 }
