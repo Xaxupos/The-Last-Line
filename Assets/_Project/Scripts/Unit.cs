@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour
     public UnitAttackController attackController;
     public StatusEffectController statusEffects;
     public UnitOnHitEffectController onHitEffects;
+    public UnitMovementController movementController;
     [SerializeField] private float deathAnimationDuration = 1f;
 
     public bool IsDead { get; private set; }
@@ -64,6 +65,8 @@ public class Unit : MonoBehaviour
             brain.enabled = false;
         if (attackController != null)
             attackController.enabled = false;
+        if (movementController != null)
+            movementController.enabled = false;
         if (onHitEffects != null)
             onHitEffects.enabled = false;
         if (statusEffects != null)

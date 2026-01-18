@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using VInspector;
 
 public class RoundController : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class RoundController : MonoBehaviour
             UnitsManager.Instance.OnUnitDied -= OnUnitDied;
     }
 
+    [Button]
     public void StartRound(RoundDefinition round)
     {
         if (round == null)
@@ -44,6 +46,18 @@ public class RoundController : MonoBehaviour
         _startTime = Time.time;
         enemySpawner.StartSpawning(round);
         OnRoundStarted?.Invoke();
+    }
+
+    private void Update()
+    {
+        if (!_running || _currentRound == null)
+            return;
+
+        if (_currentRound.timeLimitSeconds <= 0f)
+            return;
+
+        if (Time.time - _startTime >= _currentRound.timeLimitSeconds)
+            EndRound(false);
     }
 
     private void OnUnitDied(Unit _)
