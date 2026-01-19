@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: df482d3639b2b584381b46fb70e8300c
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287786
+  packageName: Universal Audio Bundle
+  packageVersion: 4.0
+  assetPath: Assets/UniversalAudioSFX/PhysicalCombatSFX/SpearHit01/SFX_SpearHitCompletev1.wav
+  uploadId: 767338

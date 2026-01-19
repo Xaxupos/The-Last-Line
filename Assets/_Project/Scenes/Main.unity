@@ -1992,33 +1992,9 @@ PrefabInstance:
       value: Game Managers
       objectReference: {fileID: 0}
     - target: {fileID: 4113081169213890682, guid: bc2078b786b2a124db37ce66a0f5b226, type: 3}
-      propertyPath: OnRoundEnded.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113081169213890682, guid: bc2078b786b2a124db37ce66a0f5b226, type: 3}
-      propertyPath: OnRoundEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113081169213890682, guid: bc2078b786b2a124db37ce66a0f5b226, type: 3}
       propertyPath: OnRoundEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2088776551}
-    - target: {fileID: 4113081169213890682, guid: bc2078b786b2a124db37ce66a0f5b226, type: 3}
-      propertyPath: OnRoundEnded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113081169213890682, guid: bc2078b786b2a124db37ce66a0f5b226, type: 3}
-      propertyPath: OnRoundEnded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadSceneByName
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113081169213890682, guid: bc2078b786b2a124db37ce66a0f5b226, type: 3}
-      propertyPath: OnRoundEnded.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LoadScene, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113081169213890682, guid: bc2078b786b2a124db37ce66a0f5b226, type: 3}
-      propertyPath: OnRoundEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 9161825574973852661, guid: bc2078b786b2a124db37ce66a0f5b226, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.51265

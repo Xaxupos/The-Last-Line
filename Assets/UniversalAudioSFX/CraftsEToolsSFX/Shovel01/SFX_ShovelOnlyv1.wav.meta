@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: ac33b3560a33b194695a2d76047794bd
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287786
+  packageName: Universal Audio Bundle
+  packageVersion: 4.0
+  assetPath: Assets/UniversalAudioSFX/CraftsEToolsSFX/Shovel01/SFX_ShovelOnlyv1.wav
+  uploadId: 767338

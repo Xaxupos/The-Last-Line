@@ -425,6 +425,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 54106288064039115, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 30.659912
+      objectReference: {fileID: 0}
     - target: {fileID: 2733294154109695874, guid: 21a996a691459214da42d006c57a962b, type: 3}
       propertyPath: tooltip
       value: 
@@ -512,6 +516,18 @@ PrefabInstance:
     - target: {fileID: 4146279094105694274, guid: 21a996a691459214da42d006c57a962b, type: 3}
       propertyPath: m_Name
       value: In-Between Rounds UI Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669319724854012740, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669319724854012740, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669319724854012740, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5999135103779618823, guid: 21a996a691459214da42d006c57a962b, type: 3}
       propertyPath: tooltip
