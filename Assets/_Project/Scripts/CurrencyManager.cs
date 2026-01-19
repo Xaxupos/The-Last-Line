@@ -10,6 +10,7 @@ public class CurrencyManager : MonoBehaviourSingleton<CurrencyManager>
     public class CurrencyChangedEvent : UnityEvent<CurrencyType, int> { }
 
     [SerializeField] private CurrencyChangedEvent OnCurrencyChanged;
+    public event Action<CurrencyType, int> CurrencyChanged;
 
     public SerializedDictionary<CurrencyType, int> Amounts = new();
 
@@ -50,6 +51,7 @@ public class CurrencyManager : MonoBehaviourSingleton<CurrencyManager>
         int next = Mathf.Max(0, current + amount);
         Amounts[type] = next;
         OnCurrencyChanged?.Invoke(type, next);
+        CurrencyChanged?.Invoke(type, next);
     }
 
     public bool CanAfford(IReadOnlyList<CurrencyAmount> costs)

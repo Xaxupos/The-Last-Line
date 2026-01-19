@@ -425,6 +425,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2733294154109695874, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: tooltip
+      value: 
+      objectReference: {fileID: 6122846715266809589}
     - target: {fileID: 3377922434751398712, guid: 21a996a691459214da42d006c57a962b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -509,11 +513,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: In-Between Rounds UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5999135103779618823, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: tooltip
+      value: 
+      objectReference: {fileID: 6122846715266809589}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a996a691459214da42d006c57a962b, type: 3}
+--- !u!114 &6122846715266809589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1506317683013921606, guid: 21a996a691459214da42d006c57a962b, type: 3}
+  m_PrefabInstance: {fileID: 6122846715266809588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd144b0c4015ba4c96fe6c60c88bb18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeTooltip
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

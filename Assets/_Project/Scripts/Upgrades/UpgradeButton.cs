@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class UpgradeButton : MonoBehaviour
+public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private UpgradeDefinition upgrade;
     [SerializeField] private int stacksPerPurchase = 1;
     [SerializeField] private bool startRevealed = true;
     [SerializeField] private List<UpgradeButton> connected = new();
+    [SerializeField] private UpgradeTooltip tooltip;
 
     private Button _button;
     private bool _revealed;
@@ -58,6 +60,7 @@ public class UpgradeButton : MonoBehaviour
         RunStateManager.Instance.AddUpgrade(upgrade, purchaseStacks);
         RevealConnected();
         RefreshInteractable();
+        UpdateTooltip();
     }
 
     public void SetRevealed(bool revealed)
@@ -67,6 +70,33 @@ public class UpgradeButton : MonoBehaviour
         gameObject.SetActive(revealed);
 
         RefreshInteractable();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (tooltip == null || upgrade == null)
+            return;
+
+        tooltip.Show(upgrade, GetCurrentStacks());
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (tooltip == null)
+            return;
+
+        tooltip.HidePanel();
+    }
+
+    private void UpdateTooltip()
+    {
+        if (tooltip == null || upgrade == null)
+            return;
+
+        if (!tooltip.isActiveAndEnabled)
+            return;
+
+        tooltip.Show(upgrade, GetCurrentStacks());
     }
 
     public void RefreshInteractable()
@@ -115,5 +145,13 @@ public class UpgradeButton : MonoBehaviour
         int currentStacks = RunStateManager.Instance.GetStacks(upgrade);
         int maxStacks = upgrade.maxStacks > 0 ? upgrade.maxStacks : int.MaxValue;
         return currentStacks < maxStacks;
+    }
+
+    private int GetCurrentStacks()
+    {
+        if (!RunStateManager.HasInstance || upgrade == null)
+            return 0;
+
+        return RunStateManager.Instance.GetStacks(upgrade);
     }
 }
