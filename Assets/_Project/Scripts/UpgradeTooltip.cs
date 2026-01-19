@@ -78,8 +78,6 @@ public class UpgradeTooltip : UIPanel
             if (i > 0)
                 sb.Append(", ");
 
-            sb.Append(costs[i].type);
-            sb.Append(" ");
             sb.Append(costs[i].amount);
         }
 
