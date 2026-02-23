@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitDefinition
   displayName: Swordsman
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 8d0eb6cff1325ba459ae1b81df5a0803, type: 3}
   baseStats:
   - id: 0
     value: 100

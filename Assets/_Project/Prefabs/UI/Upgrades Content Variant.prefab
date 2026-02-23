@@ -219,24 +219,47 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8318141499198450944, guid: 006388b358c1e814e94aff0708e039f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3448888943035822241}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 798133955684454510, guid: 006388b358c1e814e94aff0708e039f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2118582157164706110}
   m_SourcePrefab: {fileID: 100100000, guid: 006388b358c1e814e94aff0708e039f1, type: 3}
---- !u!224 &6554366381660367374 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8318141499198450944, guid: 006388b358c1e814e94aff0708e039f1, type: 3}
-  m_PrefabInstance: {fileID: 2997762241161873166}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7528858808736193953 stripped
+--- !u!114 &197811195019277761 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4747306183361223343, guid: 006388b358c1e814e94aff0708e039f1, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3108878868424979151, guid: 006388b358c1e814e94aff0708e039f1, type: 3}
   m_PrefabInstance: {fileID: 2997762241161873166}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2488725305439000416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742dd166571480840a497cc7cfddbcd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIFader
+--- !u!1 &2488725305439000416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 798133955684454510, guid: 006388b358c1e814e94aff0708e039f1, type: 3}
+  m_PrefabInstance: {fileID: 2997762241161873166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2118582157164706110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2488725305439000416}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efef97c4194e47249b59e504ba3fb9e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradesContentPanel
+  uiFader: {fileID: 197811195019277761}
+  upgradeContents:
+  - {fileID: 92654745033616230}
+--- !u!224 &6554366381660367374 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8318141499198450944, guid: 006388b358c1e814e94aff0708e039f1, type: 3}
+  m_PrefabInstance: {fileID: 2997762241161873166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3313833308739647914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,10 +348,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2443244779296413387, guid: ea5b0442f03f56f4aa7a68d4c43a4a38, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7528858808736193953}
     - target: {fileID: 2443244779296413387, guid: ea5b0442f03f56f4aa7a68d4c43a4a38, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

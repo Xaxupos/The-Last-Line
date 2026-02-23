@@ -5,6 +5,7 @@ using VInspector;
 public class RoundController : MonoBehaviour
 {
     [SerializeField] private EnemySpawnerController enemySpawner;
+    [SerializeField] private PlayerUnitsSpawner playerUnitsSpawner;
     [SerializeField] private RoundRuntimeState runtimeState;
     [Header("Events")]
     [SerializeField] private UnityEvent OnRoundStarted;
@@ -56,6 +57,20 @@ public class RoundController : MonoBehaviour
             RunStateManager.Instance.ApplyToRound(runtimeState);
         _running = true;
         _startTime = Time.time;
+        if (playerUnitsSpawner == null)
+            playerUnitsSpawner = FindFirstObjectByType<PlayerUnitsSpawner>();
+
+        if (playerUnitsSpawner != null)
+        {
+            playerUnitsSpawner.SpawnFromDeck();
+        }
+        else
+        {
+            var deck = PlayerDeck.InstanceOrNull;
+            if (deck != null && deck.HasAnyUnits())
+                Debug.LogWarning("RoundController could not find PlayerUnitsSpawner. Player units will not spawn.", this);
+        }
+
         enemySpawner.StartSpawning(runtimeState);
         OnRoundStarted?.Invoke();
     }

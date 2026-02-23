@@ -426,8 +426,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 54106288064039115, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54106288064039115, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54106288064039115, guid: 21a996a691459214da42d006c57a962b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 30.659912
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54106288064039115, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 327285397439367806, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2733294154109695874, guid: 21a996a691459214da42d006c57a962b, type: 3}
       propertyPath: tooltip
@@ -526,6 +542,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4669319724854012740, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669319724854012740, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613952808989613133, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613952808989613133, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613952808989613133, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613952808989613133, guid: 21a996a691459214da42d006c57a962b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -533,6 +569,26 @@ PrefabInstance:
       propertyPath: tooltip
       value: 
       objectReference: {fileID: 6122846715266809589}
+    - target: {fileID: 6478226642619609287, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478226642619609287, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478226642619609287, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478226642619609287, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7852036863245224073, guid: 21a996a691459214da42d006c57a962b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.4637146
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
